@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { object, string } from 'yup';
 
 export async function GET(request: Request) { 
     const {searchParams} = new URL(request.url);
@@ -25,18 +26,28 @@ export async function GET(request: Request) {
     return NextResponse.json(todos);
 }
 
+const postSchema = object({
+    id: string().required(),
+    description: string().required()
+});
+
 export async function POST(request: Request) {
 
-    const body = await request.json();
-    const todo = await prisma.todo.create({data: body});
-        
-    if(!body.id) {
-        return NextResponse.json({message: 'Missing id'}, {status: 400});
-    }
+    try {
+        const { id, description} = await postSchema.validate(await request.json());
+        const todo = await prisma.todo.create({data: {id, description}});
+            
+        if(!id) {
+            return NextResponse.json({message: 'Missing id'}, {status: 400});
+        }
+    
+        if(!description) {
+            return NextResponse.json({message: 'Missing description'}, {status: 400});
+        }
 
-    if(!body.description) {
-        return NextResponse.json({message: 'Missing description'}, {status: 400});
-    }
+        return NextResponse.json(todo, {status: 201});
 
-    return NextResponse.json(todo);
+    } catch (error) {
+        return NextResponse.json(error, {status: 400});
+    }
 }
