@@ -1,6 +1,23 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
-import { CiBookmarkCheck, CiLogout } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
+import SidebarItem from "./SidebarItem";
+import { RiDashboard2Fill } from "react-icons/ri";
+import { TbCategoryFilled } from "react-icons/tb";
+
+const sidebarItems = [
+    {
+        href: "/dashboard",
+        label: "Dashboard",
+        icon: RiDashboard2Fill,
+    },
+    {
+        href: "/dashboard/categories",
+        label: "Categories",
+        icon: TbCategoryFilled,
+    }
+]
 
 export default function Sidebar() {
   return (
@@ -19,7 +36,6 @@ export default function Sidebar() {
         </div>
 
         <div className="mt-8 text-center">
-          {/* Next/Image */}
           <Image
             src="https://tailus.io/sources/blocks/stats-cards/preview/images/second_user.webp"
             alt=""
@@ -34,26 +50,11 @@ export default function Sidebar() {
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
-          {/* TODO: src/components <SidebarItem /> */}
-          {/* Active className: text-white bg-gradient-to-r from-sky-600 to-cyan-400 */}
-          <li>
-            <a
-              href="#"
-              className="relative px-4 py-3 flex items-center space-x-4 rounded-xl text-white bg-gradient-to-r from-sky-600 to-cyan-400"
-            >
-              <CiBookmarkCheck size={30} />
-              <span className="-mr-1 font-medium">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-            >
-              <CiBookmarkCheck size={30} />
-              <span className="group-hover:text-gray-700">Categories</span>
-            </a>
-          </li>
+            {
+                sidebarItems.map((item, index) => (
+                    <SidebarItem key={index} href={item.href} label={item.label} icon={item.icon} />
+                ))
+            }
         </ul>
       </div>
 
