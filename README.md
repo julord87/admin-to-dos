@@ -6,7 +6,7 @@ Pasos para levantar la app en desarrollo
 docker compose up -d
 ```
 
-2. Renombrar el .env.template a .env
+2. Crear una copia del .env.template y renombrarlo a .env
 3. Reemplazar las variables de entorno
 4. Ejecutar el seed para crear la local DB
 
