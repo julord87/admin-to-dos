@@ -3,20 +3,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import SidebarItem from "./SidebarItem";
-import { RiDashboard2Fill } from "react-icons/ri";
-import { TbCategoryFilled } from "react-icons/tb";
+import { IoCalendarOutline, IoCheckboxOutline, IoListOutline } from "react-icons/io5";
 
 const sidebarItems = [
     {
         href: "/dashboard",
         label: "Dashboard",
-        icon: RiDashboard2Fill,
+        icon: IoCalendarOutline,
     },
     {
-        href: "/dashboard/categories",
-        label: "Categories",
-        icon: TbCategoryFilled,
-    }
+        href: "/dashboard/rest-todos",
+        label: "Rest TODOS",
+        icon: IoCheckboxOutline,
+    },
+    {
+        href: "/dashboard/server-todos",
+        label: "Server Actions",
+        icon: IoListOutline,
+    },
 ]
 
 export default function Sidebar() {
