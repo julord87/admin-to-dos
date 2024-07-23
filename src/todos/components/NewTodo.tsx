@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
-import { addTodo } from "../actions/todo-actions";
+import { addTodo, deleteCompleted } from "../actions/todo-actions";
 
 
 
@@ -25,15 +25,6 @@ export const NewTodo = () => {
       setIsLoading(false);
     }
   };
-
-  const deleteCompleted = async () => {
-    // try {
-    //   await api.deleteCompleted();
-    //   router.refresh();
-    // } catch (error) {
-    //   console.error("Error deleting completed todos:", error);
-    // }
-  }
 
   return (
     <form className="flex w-full" onSubmit={onSubmit}>
