@@ -21,6 +21,7 @@ export const updateTodos = async(id: string, complete: boolean): Promise<Todo> =
 
 export const createTodo = async(description: string): Promise<Todo> => {
 
+    try {
         const body = {description};
 
         const todo = await fetch(`/api/todos/`, {
@@ -34,4 +35,10 @@ export const createTodo = async(description: string): Promise<Todo> => {
         console.log({ todo });
 
         return todo;
+
+    } catch (error) {
+        console.error('Error creating todo', error);
+        throw error;
+    }
+
 }

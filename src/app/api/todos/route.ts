@@ -27,19 +27,15 @@ export async function GET(request: Request) {
 }
 
 const postSchema = object({
-    id: string().required(),
     description: string().required()
 });
 
 export async function POST(request: Request) {
 
     try {
-        const { id, description} = await postSchema.validate(await request.json());
-        const todo = await prisma.todo.create({data: {id, description}});
+        const { description} = await postSchema.validate(await request.json());
+        const todo = await prisma.todo.create({data: { description}});
             
-        if(!id) {
-            return NextResponse.json({message: 'Missing id'}, {status: 400});
-        }
     
         if(!description) {
             return NextResponse.json({message: 'Missing description'}, {status: 400});
