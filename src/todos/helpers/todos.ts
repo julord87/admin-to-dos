@@ -42,3 +42,9 @@ export const createTodo = async(description: string): Promise<Todo> => {
     }
 
 }
+
+export function deleteCompleted() {
+    return fetch(`/api/todos/`, {
+        method: 'DELETE'
+    }).then((res) => res.json());
+}
