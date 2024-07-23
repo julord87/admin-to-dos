@@ -2,11 +2,11 @@
 
 import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
-import * as api from "@/todos/helpers/todos";
-import { useRouter } from "next/navigation";
+import { addTodo } from "../actions/todo-actions";
+
+
 
 export const NewTodo = () => {
-  const router = useRouter();
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,9 +17,8 @@ export const NewTodo = () => {
 
     setIsLoading(true);
     try {
-      await api.createTodo(description);
+      await addTodo(description);
       setDescription("");
-      router.refresh();
     } catch (error) {
       console.error("Error creating todo:", error);
     } finally {
@@ -28,12 +27,12 @@ export const NewTodo = () => {
   };
 
   const deleteCompleted = async () => {
-    try {
-      await api.deleteCompleted();
-      router.refresh();
-    } catch (error) {
-      console.error("Error deleting completed todos:", error);
-    }
+    // try {
+    //   await api.deleteCompleted();
+    //   router.refresh();
+    // } catch (error) {
+    //   console.error("Error deleting completed todos:", error);
+    // }
   }
 
   return (
