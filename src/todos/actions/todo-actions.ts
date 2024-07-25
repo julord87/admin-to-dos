@@ -5,6 +5,7 @@ import { Todo } from '@prisma/client';
 import { revalidatePath } from "next/cache";
 
 export const toggleTodo = async (id: string, complete: boolean): Promise<Todo> => {
+
     const todo = await prisma.todo.findFirst({
         where: { id },
     });
