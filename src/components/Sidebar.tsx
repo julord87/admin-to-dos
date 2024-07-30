@@ -4,6 +4,7 @@ import Link from "next/link";
 import { CiLogout } from "react-icons/ci";
 import SidebarItem from "./SidebarItem";
 import { IoCalendarOutline, IoCheckboxOutline, IoListOutline } from "react-icons/io5";
+import { LiaCookieSolid } from "react-icons/lia";
 
 const sidebarItems = [
     {
@@ -21,6 +22,11 @@ const sidebarItems = [
         label: "Server Actions",
         icon: IoListOutline,
     },
+    {
+      href: "/dashboard/cookies",
+      label: "Cookies",
+      icon: LiaCookieSolid,
+    }
 ]
 
 export default function Sidebar() {
