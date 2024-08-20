@@ -5,6 +5,7 @@ import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOut
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { SidebarItem } from './SidebarItem';
+import { CiLogout } from 'react-icons/ci';
 
 
 const menuItems = [
@@ -95,6 +96,13 @@ export const Sidebar = async() => {
           }
           
         </ul>
+      </div>
+
+      <div className='px-6 -mx-6 pt-4 flex justify-between space-x-4 rounded-md text-gray-600'>
+        <button>
+          <CiLogout />
+          <span className='group-hover:text-gray-700'>Logout</span>
+        </button>
       </div>
 
     </aside>

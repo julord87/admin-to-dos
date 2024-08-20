@@ -4,6 +4,7 @@ const nextConfig = {
         domains: [
             'tailus.io',
             'avatars.githubusercontent.com',
+            'lh3.googleusercontent.com'
         ]
     },
 };
