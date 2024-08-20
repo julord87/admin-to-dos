@@ -1,38 +1,32 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
-interface SidebarItemProps {
-  href: string;
-  label: string;
-  icon: any;
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+interface Props {
+  icon:  React.ReactNode;
+  path:  string;
+  title: string;
 }
 
-export default function SidebarItem({ href, label, icon: Icon }: SidebarItemProps) {
-  const pathname = usePathname();
-  const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
-    setIsActive(pathname === href);
-  }, [pathname, href]);
+export const SidebarItem = ({ icon, path, title }: Props ) => {
 
+  const pathName = usePathname();
+
+
+  {/* Active className: text-white bg-gradient-to-r from-sky-600 to-cyan-400 */}
   return (
     <li>
-      <a
-        href={href}
-        onClick={(e) => {
-          e.preventDefault();
-          router.push(href);
-        }}
-        className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl ${
-          isActive ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400' : 'text-gray-600'
-        }`}
-      >
-        <Icon size={30} />
-        <span className="-mr-1 font-medium">{label}</span>
-      </a>
+      <Link href={ path } className={`
+        px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group
+        hover:bg-gradient-to-r hover:bg-sky-600 hover:text-white
+        ${ path === pathName ? 'text-white bg-gradient-to-r from-sky-600 to-cyan-400': '' }
+      `}>
+        { icon }
+        <span className="group-hover:text-white-700">{ title }</span>
+      </Link>
     </li>
-  );
+  )
 }

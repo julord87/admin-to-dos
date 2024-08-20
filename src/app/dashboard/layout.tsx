@@ -1,13 +1,14 @@
 // Admin Dashboard https://tailwindcomponents.com/component/dashboard-12
 
-import Sidebar from "@/components/Sidebar";
+import { Sidebar } from "@/components/Sidebar";
 import TopMenu from "@/components/TopMenu";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <>
       <Sidebar />
