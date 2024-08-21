@@ -27,8 +27,8 @@ model Account {
   id                 String    @id @default(cuid())
   userId             String
   providerType       String
-  providerId         String
-  providerAccountId  String
+  providerId         String    @map(name: "provider_id")
+  providerAccountId  String    @map(name: "provider_account_id")
   refreshToken       String?
   refreshTokenExpiresIn Int?
   accessToken        String?
@@ -38,6 +38,8 @@ model Account {
   user               User      @relation(fields: [userId], references: [id])
 
   @@unique([providerId, providerAccountId])
+  @@index([providerId], name: "providerId")
+  @@index([providerAccountId], name: "providerAccountId")
 }
 
 model Session {
