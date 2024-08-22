@@ -52,7 +52,7 @@ export const Sidebar = async() => {
 
   const userName = session?.user?.name ?? 'No Name';
 
-  // const role = session?.user?.role;
+  const userRoles = session?.user?.roles ?? ['no-roles'];
 
 
 
@@ -85,6 +85,7 @@ export const Sidebar = async() => {
             { userName }
           </h5>
           <span className="hidden text-gray-400 lg:block capitalize">
+            { userRoles.join(', ') }
           </span>
         </div>
 
