@@ -5,7 +5,6 @@ import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOut
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { SidebarItem } from './SidebarItem';
-import { CiLogout } from 'react-icons/ci';
 import LogoutButton from './LogoutButton';
 
 
