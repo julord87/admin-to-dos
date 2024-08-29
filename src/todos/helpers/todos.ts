@@ -1,7 +1,5 @@
 import { Todo } from "@prisma/client";
 
-
-
 export const updateTodos = async(id: string, complete: boolean): Promise<Todo> => {
 
         const body = {complete};

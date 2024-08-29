@@ -4,6 +4,9 @@ import { FormEvent, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { addTodo, deleteCompleted } from "../actions/todo-actions";
 
+import * as todosApi from "../helpers/todos";
+import { useRouter } from "next/navigation";
+
 
 
 export const NewTodo = () => {
@@ -13,11 +16,13 @@ export const NewTodo = () => {
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const router = useRouter();
     if (description.trim().length === 0) return;
 
     setIsLoading(true);
     try {
-      await addTodo(description);
+      await todosApi.createTodo(description);
+      router.refresh();
       setDescription("");
     } catch (error) {
       console.error("Error creating todo:", error);
